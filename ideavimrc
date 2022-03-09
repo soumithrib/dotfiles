@@ -1,0 +1,17 @@
+" Show file stats
+set ruler
+
+" Blink cursor on error instead of beeping (grr)
+set visualbell
+
+" Encoding
+set encoding=utf-8
+
+set list
+set listchars=tab:»·,eol:«,trail:·
+
+imap jk <Esc>
+imap kj <Esc>
+
+colorscheme srcery
+highlight ColorColumn ctermbg=8 guibg=LightRed
