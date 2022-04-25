@@ -1,5 +1,10 @@
 export PS1="\[$(tput sgr0)\][\[$(tput setaf 5)\]\u \[$(tput setaf 4)\]\W\[$(tput sgr0)\]]\$ "
 alias gfiles='sed "s/:.*//" | grep -v "Binary file" | sort -u'
-if command -v tmux>/dev/null; then
- [[ ! $TERM =~ screen ]] && [ -z $TMUX ] && tmux
+if [[ -z "$TMUX" ]]; then
+  ID="$( tmux ls | grep -vm1 attached | cut -d: -f1 )" # get the id of a deattached session
+  if [[ -z "$ID" ]] ;then # if not available attach to a new one
+    tmux new-session
+  else
+    tmux attach-session -t "$ID" # if available attach to it
+  fi
 fi
